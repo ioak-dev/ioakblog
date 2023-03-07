@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './style.scss';
-import { Select, SelectPropsConverter } from 'basicui';
-import Generator from './Generator';
-import { getSessionValue, setSessionValue, toNumber } from '../../utils/SessionUtils';
-import * as Constants from './Constants';
 import Logo from '../Logo';
 import DarkModeIcon from '../DarkModeIcon';
+import PageView from './PageView';
 
 interface Props {
 }
@@ -19,6 +16,7 @@ const Home = (props: Props) => {
       </div>
       <div className='page-home__body'>
         body
+        <PageView />
       </div>
     </div>
   );

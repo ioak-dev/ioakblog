@@ -4,6 +4,8 @@ import { Routes, Route, Link, BrowserRouter, HashRouter } from 'react-router-dom
 import Home from '../Home';
 import Landing from '../Landing';
 import Navigation from '../Navigation';
+import Init from './Init';
+import './style.scss';
 
 type Props = {
     cookies?: any
@@ -14,8 +16,9 @@ function Content({ cookies }: Props) {
     const profile = useSelector((state: any) => state.profile);
 
     return (
-        <div className={`content ${profile.theme === "theme_dark" ? "basicui-dark reach-dark" : "basicui-light reach-light"}`}>
+        <div className={`content ${profile.theme === "basicui-dark" ? "basicui-dark reach-dark" : "basicui-light reach-light"}`}>
             <HashRouter>
+                <Init />
                 {/* <Navigation /> */}
                 <Routes>
                     <Route index element={<Home />} />
