@@ -1,15 +1,22 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import DarkModeIcon from '../DarkModeIcon';
+import Logo from '../Logo';
+import './style.scss';
 
-
-const Navigation = () => (
-    <nav>
-        <Link to="/landing">Landing</Link>
-        <Link to="/home">Home</Link>
-        <Link to="/dashboard">Dashboard</Link>
-        <Link to="/analytics">Analytics</Link>
-        <Link to="/admin">Admin</Link>
-    </nav>
+const Topbar = () => (
+    <div className='topbar'>
+        <div className="topbar__left">
+            <Logo variant='full' />
+            <nav className="topbar__links">
+                <Link className="topbar__link" to="/home">Home</Link>
+                <Link className="topbar__link" to="/admin">Admin</Link>
+            </nav>
+        </div>
+        <div>
+            <DarkModeIcon />
+        </div>
+    </div>
 );
 
-export default Navigation;
+export default Topbar;

@@ -4,6 +4,7 @@ import { Routes, Route, Link, BrowserRouter, HashRouter } from 'react-router-dom
 import Home from '../Home';
 import Landing from '../Landing';
 import Navigation from '../Navigation';
+import Newpost from '../Newpost';
 import Init from './Init';
 import './style.scss';
 
@@ -19,12 +20,12 @@ function Content({ cookies }: Props) {
         <div className={`content ${profile.theme === "basicui-dark" ? "basicui-dark reach-dark" : "basicui-light reach-light"}`}>
             <HashRouter>
                 <Init />
-                {/* <Navigation /> */}
+                <Navigation />
                 <Routes>
                     <Route index element={<Home />} />
-                    <Route path="landing" element={<Landing />} />
                     <Route path="/" element={<Home />} />
                     <Route path="home" element={<Home />} />
+                    <Route path="newpost" element={<Newpost />} />
                     <Route path="*" element={<p>There's nothing here: 404!</p>} />
                 </Routes>
             </HashRouter>
