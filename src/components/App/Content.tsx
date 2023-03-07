@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Routes, Route, Link, BrowserRouter, HashRouter } from 'react-router-dom';
+import EditPost from '../EditPost';
 import Home from '../Home';
 import Landing from '../Landing';
 import Login from '../Login';
@@ -29,6 +30,7 @@ function Content({ cookies }: Props) {
                     <Route path="home" element={<Home />} />
                     <Route path="newpost" element={<Newpost />} />
                     <Route path="post/:id" element={<ViewPost />} />
+                    <Route path="post/:id/edit" element={<EditPost />} />
                     <Route path="login" element={<Login />} />
                     <Route path="*" element={<p>There's nothing here: 404!</p>} />
                 </Routes>

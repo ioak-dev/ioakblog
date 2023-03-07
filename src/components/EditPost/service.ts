@@ -1,14 +1,14 @@
 import { httpGet, httpPost } from "../../utils/RestTemplate";
 
-export const getAllUsers = (
+export const getPostById = (id: string
 ) => {
     return httpGet(
-        `/member`,
+        `/article/${id}`,
         null
     )
         .then((response) => {
             if (response.status === 200) {
-                return Promise.resolve(response.data.map((item: any) => ({ ...item, id: item._id, avatarUrl: item.profilePic })));
+                return Promise.resolve({...response.data, id: response.data._id});
             }
             return Promise.resolve([]);
         })

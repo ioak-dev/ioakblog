@@ -7,7 +7,7 @@ import { categories } from '../Home/data/CategoryData';
 import { getPostById } from './service';
 import './style.scss';
 
-const ViewPost = () => {
+const EditPost = () => {
     const navigate = useNavigate();
     const params = useParams();
     const [post, setPost] = useState<ArticleType.Article>();
@@ -42,4 +42,4 @@ const ViewPost = () => {
     </>)
 }
 
-export default ViewPost;
+export default EditPost;
