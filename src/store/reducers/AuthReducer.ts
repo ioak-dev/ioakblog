@@ -1,9 +1,14 @@
+import { setSessionValue } from '../../utils/SessionUtils';
 import { GET_AUTH, ADD_AUTH, REMOVE_AUTH } from '../actions/types';
 
 const initialState = {
   isAuth: false,
-  given_name: '',
-  family_name: '',
+  email: '',
+  firstName: '',
+  lastName: '',
+  memberId: null,
+  profilePic: '',
+  token: null
 };
 
 export default function AuthReducer(state = initialState, action: any) {
@@ -15,8 +20,15 @@ export default function AuthReducer(state = initialState, action: any) {
       };
     case ADD_AUTH:
       console.log('ADD_AUTH reducer');
+      setSessionValue("IOAK_USER", JSON.stringify(
+        {
+          ...state,
+          isAuth: true,
+          ...action.payload
+        }));
       return {
         ...state,
+        isAuth: true,
         ...action.payload,
       };
 
@@ -26,8 +38,12 @@ export default function AuthReducer(state = initialState, action: any) {
       return {
         ...state,
         isAuth: false,
-        given_name: '',
-        family_name: '',
+        email: '',
+        firstName: '',
+        lastName: '',
+        memberId: null,
+        profilePic: '',
+        token: null
       };
     default:
       return state;

@@ -4,7 +4,7 @@ import { fetchAllRealms } from '../../store/actions/RealmActions';
 import { receiveMessage, sendMessage } from '../../events/MessageService';
 import { fetchAllClients } from '../../store/actions/ClientActions';
 import { addAuth } from '../../store/actions/AuthActions';
-import { setSessionValue } from '../../utils/SessionUtils';
+import { getSessionValue, setSessionValue } from '../../utils/SessionUtils';
 import { axiosInstance, httpPost } from '../../utils/RestTemplate';
 
 interface Props {
@@ -16,6 +16,13 @@ const Init = (props: Props) => {
     useState<any>();
   const [realm, setRealm] = useState<number>(100);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const _authorization = JSON.parse(getSessionValue("IOAK_USER") || "{}");
+    if (_authorization.isAuth) {
+      dispatch(addAuth(_authorization));
+    }
+  }, []);
 
   useEffect(() => {
     if (

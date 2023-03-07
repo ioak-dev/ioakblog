@@ -28,7 +28,8 @@ const DarkModeIcon = () => {
     );
   };
   return (
-    <button className={`dark-mode-icon ${profile.theme}`} onClick={toggleMode}>
+    // <button className={`dark-mode-icon ${profile.theme}`} onClick={toggleMode}>
+    <button className='dark-mode-icon' onClick={toggleMode}>
       {profile.theme === 'basicui-dark' && <FontAwesomeIcon icon={faSun} />}
       {profile.theme !== 'basicui-dark' && (
         <FontAwesomeIcon icon={faMoon} />
