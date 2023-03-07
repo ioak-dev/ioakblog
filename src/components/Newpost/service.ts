@@ -1,7 +1,8 @@
 import { httpPost } from "../../utils/RestTemplate";
 
 export const createPost = (
-    payload: any
+    payload: any,
+    authorization: any
   ) => {
     return httpPost(
       `/article`,

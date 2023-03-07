@@ -3,10 +3,13 @@ import { Button, Input, Textarea, ThemeType } from 'basicui'
 import './style.scss';
 import { ArticleType } from 'reach';
 import { createPost } from './service';
+import { useSelector } from 'react-redux';
 
 interface Props {
 }
 const Newpost = (props: Props) => {
+
+  const authorization = useSelector((state: any) => state.authorization);
 
   const [state, setState] = useState<ArticleType.Article>({
     title: "", description: "", views: 0, createdBy: "1", helpful: 0, notHelpful: 0, id: "", updatedBy: "", tags: []
@@ -18,7 +21,7 @@ const Newpost = (props: Props) => {
 
   const save = () => {
     console.log(state);
-    createPost(state).then((data) => console.log(data))
+    createPost(state, authorization).then((data) => console.log(data))
   }
 
   const cancel = () => {

@@ -6,6 +6,8 @@ import { fetchAllClients } from '../../store/actions/ClientActions';
 import { addAuth } from '../../store/actions/AuthActions';
 import { getSessionValue, setSessionValue } from '../../utils/SessionUtils';
 import { axiosInstance, httpPost } from '../../utils/RestTemplate';
+import { getAllUsers } from './service';
+import { addUser } from '../../store/actions/UserActions';
 
 interface Props {
 }
@@ -23,6 +25,14 @@ const Init = (props: Props) => {
       dispatch(addAuth(_authorization));
     }
   }, []);
+
+  useEffect(() => {
+    if (authorization.isAuth) {
+      getAllUsers().then((data: any[]) => {
+        dispatch(addUser(data));
+      })
+    }
+  }, [authorization]);
 
   useEffect(() => {
     if (
@@ -83,7 +93,7 @@ const Init = (props: Props) => {
   };
   const initializeHttpInterceptor = () => {
     console.log('HTTP Interceptor initialization');
-    axiosInstance.defaults.headers.authorization = authorization.access_token;
+    axiosInstance.defaults.headers.authorization = authorization.token;
     axiosInstance.interceptors.response.use(
       (response) => {
         return response;

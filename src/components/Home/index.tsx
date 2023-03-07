@@ -12,7 +12,6 @@ const Home = (props: Props) => {
   return (
     <div className="page-home">
       <div className='page-home__body'>
-        body
         <PageView />
       </div>
     </div>

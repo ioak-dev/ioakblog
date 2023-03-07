@@ -13,7 +13,6 @@ const Topbar = () => {
     const dispatch = useDispatch();
 
     const logout = () => {
-        removeSessionValue("IOAK_USER");
         dispatch(removeAuth());
     }
 
@@ -23,7 +22,7 @@ const Topbar = () => {
                 <Logo variant='full' />
                 <nav className="topbar__links">
                     <Link className="topbar__link" to="/home">Home</Link>
-                    <Link className="topbar__link" to="/admin">Admin</Link>
+                    <Link className="topbar__link" to="/newpost">New post</Link>
                 </nav>
             </div>
             <div className="topbar__right">

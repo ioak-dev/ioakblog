@@ -6,6 +6,7 @@ import Landing from '../Landing';
 import Login from '../Login';
 import Navigation from '../Navigation';
 import Newpost from '../Newpost';
+import ViewPost from '../ViewPost';
 import Init from './Init';
 import './style.scss';
 
@@ -27,6 +28,7 @@ function Content({ cookies }: Props) {
                     <Route path="/" element={<Home />} />
                     <Route path="home" element={<Home />} />
                     <Route path="newpost" element={<Newpost />} />
+                    <Route path="post/:id" element={<ViewPost />} />
                     <Route path="login" element={<Login />} />
                     <Route path="*" element={<p>There's nothing here: 404!</p>} />
                 </Routes>

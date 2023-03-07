@@ -1,4 +1,4 @@
-import { setSessionValue } from '../../utils/SessionUtils';
+import { removeSessionValue, setSessionValue } from '../../utils/SessionUtils';
 import { GET_AUTH, ADD_AUTH, REMOVE_AUTH } from '../actions/types';
 
 const initialState = {
@@ -35,6 +35,7 @@ export default function AuthReducer(state = initialState, action: any) {
     case REMOVE_AUTH:
       console.log('REMOVE_AUTH reducer');
       console.log(state);
+      removeSessionValue("IOAK_USER");
       return {
         ...state,
         isAuth: false,
