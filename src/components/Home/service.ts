@@ -8,7 +8,7 @@ export const getAllPosts = (
     )
         .then((response) => {
             if (response.status === 200) {
-                return Promise.resolve(response.data.map((item: any) => ({ ...item, id: item._id })));
+                return Promise.resolve(response.data.map((item: any) => ({...item, id: item._id})));
             }
             return Promise.resolve([]);
         })

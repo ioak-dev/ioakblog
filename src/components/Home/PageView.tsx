@@ -19,6 +19,7 @@ const PageView = (props: Props) => {
   useEffect(() => {
     if (authorization.isAuth) {
       getAllPosts().then((data) => {
+        console.log("((", data);
         setArticles(data);
       });
     }

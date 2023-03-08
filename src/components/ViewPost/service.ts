@@ -8,7 +8,7 @@ export const getPostById = (id: string
     )
         .then((response) => {
             if (response.status === 200) {
-                return Promise.resolve({...response.data, id: response.data._id});
+                return Promise.resolve({ ...response.data, id: response.data._id });
             }
             return Promise.resolve([]);
         })

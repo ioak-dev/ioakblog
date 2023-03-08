@@ -3,6 +3,10 @@
   grid-auto-flow: row;
   row-gap: 20px;
   padding: 20px 40px;
+
+  textarea {
+      height: auto;
+  }
 }
 
 .newpost__action-bar {
