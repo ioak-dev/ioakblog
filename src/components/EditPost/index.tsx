@@ -3,6 +3,7 @@ import { ArticleType, ArticleViewBodyChildWidget, ArticleViewMetadataChildWidget
 import React, { useEffect, useReducer, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import EditorComponent from '../EditorComponent';
 import { categories } from '../Home/data/CategoryData';
 import { getPostById } from '../ViewPost/service';
 import { updatePost } from './service';
@@ -44,6 +45,7 @@ const EditPost = () => {
                 <Input value={state.title} name="title" label='Title' onInput={handleChange} />
                 <Input value={state.featuredImage} name="featuredImage" label='Feature image' onInput={handleChange} />
                 <Textarea rows={5} value={state.description} name="description" label='Body' onInput={handleChange} />
+                <EditorComponent />
                 <div className="edit-post__action-bar">
                     <Button onClick={save} theme={ThemeType.primary}>Save changes</Button>
                     <Button onClick={cancel}>Cancel</Button>

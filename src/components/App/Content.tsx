@@ -20,7 +20,7 @@ function Content({ cookies }: Props) {
     const profile = useSelector((state: any) => state.profile);
 
     return (
-        <div className={`content ${profile.theme === "basicui-dark" ? "basicui-dark reach-dark" : "basicui-light reach-light"}`}>
+        <div className={`content ${profile.theme === "basicui-dark" ? "basicui-dark reach-dark writeup-dark" : "basicui-light reach-light writeup-light"}`}>
             <HashRouter>
                 <Init />
                 <Navigation />
