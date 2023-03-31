@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addAuth } from '../../store/actions/AuthActions';
 import ioakblogBlack from '../../images/ioakblog_black.svg';
 import ioakblogWhite from '../../images/ioakblog_white.svg';
-import { useNavigate } from 'react-router-dom';
 
 interface Props {
 }
@@ -18,8 +17,6 @@ const Login = (props: Props) => {
   const profile = useSelector((state: any) => state.profile);
 
   const dispatch = useDispatch();
-  
-  const navigate = useNavigate();
 
   const [state, setState] = useState({
     email: "", password: ""
@@ -33,10 +30,6 @@ const Login = (props: Props) => {
     console.log(state);
     userSignin(state).then((data) => {
       dispatch(addAuth(data));
-      console.log(data);
-      if (data.length > 0) {
-        navigate("/home");
-      }
     });
   }
 
