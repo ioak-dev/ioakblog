@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Input, Textarea, ThemeType } from 'basicui'
 import './style.scss';
 import { ArticleType } from 'reach';
-import { userSignin } from './service';
+import { forgotPassword, userSignin } from './service';
 import { setSessionValue } from '../../utils/SessionUtils';
 import { useDispatch, useSelector } from 'react-redux';
 import { addAuth } from '../../store/actions/AuthActions';
@@ -12,7 +12,7 @@ import ioakblogWhite from '../../images/ioakblog_white.svg';
 interface Props {
 }
 const Login = (props: Props) => {
-  var showForgotPwd:boolean = false;
+  const [showForgotPwd, setShowForgotPwd] = useState(false);
 
   const profile = useSelector((state: any) => state.profile);
 
@@ -34,7 +34,19 @@ const Login = (props: Props) => {
   }
 
   const openforgotPwd = () => {
-    return showForgotPwd = true;
+    setShowForgotPwd(true);
+  }
+
+  const closeforgotPwd = () => {
+    setShowForgotPwd(false);
+  }
+
+  const forgotPwd = () => {
+    console.log(state);
+    const payload = {email: state.email};
+    forgotPassword(payload).then((data) => {
+      console.log(data);
+    });
   }
 
   return (
@@ -46,19 +58,22 @@ const Login = (props: Props) => {
         {profile.theme !== 'basicui-light' && (
           <img src={ioakblogBlack} alt="Ioakblog logo" />
         )}
-        <form>
-          <Input value={state.email} className="login-form__input" name="email" onInput={handleChange} />
-          <Input value={state.password} className="login-form__input" type="password" name="password" onInput={handleChange} />
-          <span className="forgot_password_link"><a onClick={openforgotPwd}>Forgot password?</a></span>
-          <div className="login__action-bar">
-            <Button onClick={signin} theme={ThemeType.primary}>Login</Button>
-          </div>
-        </form>
+        {!showForgotPwd &&
+          <form>
+            <Input value={state.email} className="login-form__input" name="email" onInput={handleChange} />
+            <Input value={state.password} className="login-form__input" type="password" name="password" onInput={handleChange} />
+            <span className="forgot_password_link"><a onClick={openforgotPwd}>Forgot password?</a></span>
+            <div className="login__action-bar">
+              <Button onClick={signin} theme={ThemeType.primary}>Login</Button>
+            </div>
+          </form>
+        }
         {showForgotPwd &&
           <form>
             <Input value={state.email} className="login-form__input" name="email" onInput={handleChange} />
+            <span className="forgot_password_link"><a onClick={closeforgotPwd}>Sign In!</a></span>
             <div className="login__action-bar">
-              <Button onClick={signin} theme={ThemeType.primary}>Submit</Button>
+              <Button onClick={forgotPwd} theme={ThemeType.primary}>Submit</Button>
             </div>
           </form>
         }

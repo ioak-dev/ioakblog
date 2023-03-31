@@ -21,8 +21,8 @@ const Topbar = () => {
             <div className="topbar__left">
                 <Logo variant='full' />
                 <nav className="topbar__links">
-                    <Link className="topbar__link" to="/home">Home</Link>
-                    <Link className="topbar__link" to="/newpost">New post</Link>
+                    {authorization.isAuth && <Link className="topbar__link" to="/home">Home</Link>}
+                    {authorization.isAuth && <Link className="topbar__link" to="/newpost">New post</Link>}
                 </nav>
             </div>
             <div className="topbar__right">
