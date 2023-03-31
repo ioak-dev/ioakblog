@@ -1,6 +1,6 @@
-import React, { useEffect, useReducer, useState } from 'react';
 import StarterKit from '@tiptap/starter-kit'
 import Color from '@tiptap/extension-color';
+import FontFamily from '@tiptap/extension-font-family'
 import TextStyle from '@tiptap/extension-text-style';
 import Text from '@tiptap/extension-text';
 import TextAlign from '@tiptap/extension-text-align';
@@ -17,44 +17,16 @@ import Highlight from '@tiptap/extension-highlight'
 import Typography from '@tiptap/extension-typography'
 import TaskItem from '@tiptap/extension-task-item'
 import TaskList from '@tiptap/extension-task-list'
+import Subscript from '@tiptap/extension-subscript'
+import Superscript from '@tiptap/extension-superscript'
+import Link from '@tiptap/extension-link'
+import { useEditor } from '@tiptap/react';
 
-import './style.scss';
-import { useEditor, EditorContent } from '@tiptap/react';
-import {
-    Editor,
-    Bold,
-    Italic,
-    Strikethrough,
-    Underline as UnderlineComponent,
-    HeadingDropdown,
-    AlignmentDropdown,
-    AlignLeft,
-    AlignCenter,
-    AlignRight,
-    AlignJustify,
-    AddImage,
-    AddTable,
-    AddYoutubeVideo,
-    BlockQuote,
-    BulletList,
-    ClearFormatting,
-    Code,
-    CodeBlock,
-    FontColor,
-    HighlightColor,
-    HorizontalRule,
-    OrderedList
-} from 'writeup';
-
-const theme = {
-};
-
-const EditorComponent = () => {
-    const editor = useEditor({
+export const getEditorConfig = () => {
+    const config = useEditor({
         extensions: [
-            Highlight,
             Typography,
-            Document, Paragraph, Text, TextStyle, Color,
+            TextStyle, Color,
             Underline.configure({
                 HTMLAttributes: {
                     class: 'my-custom-class',
@@ -71,8 +43,8 @@ const EditorComponent = () => {
                 allowBase64: true,
             }),
             Youtube.configure({
-                inline: false,
-                controls: false,
+                inline: true,
+                controls: true,
             }),
             Table.configure({
                 HTMLAttributes: {
@@ -83,12 +55,23 @@ const EditorComponent = () => {
             TableRow,
             TableHeader,
             TableCell,
+            FontFamily.configure({
+                types: ['textStyle'],
+              }),
+            Link.configure({
+                HTMLAttributes: {
+                    class: 'my-custom-class',
+                },
+                validate: href => /^https?:\/\//.test(href),
+            }),
             Highlight.configure({
                 HTMLAttributes: {
                     class: 'my-custom-class',
                 },
                 multicolor: true,
             }),
+            Subscript,
+            Superscript,
             TaskList.configure({
                 HTMLAttributes: {
                     class: 'my-custom-class',
@@ -108,42 +91,8 @@ const EditorComponent = () => {
                 },
             }),
         ],
-        content: [],
+        content: `Hello`,
     });
 
-    // editor?.on('update', ({ editor }) => {
-    //     console.log(editor.getJSON(), editor.getHTML());
-    // })
-
-    return (
-        <div id="editor">
-            <Editor editor={editor}>
-                <Bold editor={editor} />
-                <Italic editor={editor} />
-                <UnderlineComponent editor={editor} />
-                <Strikethrough editor={editor} />
-                <AlignLeft editor={editor} />
-                <AlignCenter editor={editor} />
-                <AlignRight editor={editor} />
-                <AlignJustify editor={editor} />
-                <HeadingDropdown editor={editor} />
-                <AlignmentDropdown editor={editor} />
-                <BulletList editor={editor} />
-                <OrderedList editor={editor} />
-                <BlockQuote editor={editor} />
-                <Code editor={editor} />
-                <CodeBlock editor={editor} />
-                <FontColor editor={editor} />
-                <HighlightColor editor={editor} />
-                <HorizontalRule editor={editor} />
-                <ClearFormatting editor={editor} />
-                <AddImage editor={editor} imageUploadMethod="POST" imageUploadParam='file'
-                    imageUploadURL={`${process.env.REACT_APP_API_URL}/upload`} />
-                <AddTable editor={editor} />
-                <AddYoutubeVideo editor={editor} />
-            </Editor>
-        </div>
-    )
+    return config;
 }
-
-export default EditorComponent;

@@ -5,10 +5,38 @@ import { ArticleType } from 'reach';
 import { createPost } from './service';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { getEditorConfig } from '../../utils/EditorUtils';
+
+import {
+  Editor,
+  Bold,
+  Italic,
+  Strikethrough,
+  Underline as UnderlineComponent,
+  HeadingDropdown,
+  AlignmentDropdown,
+  AlignLeft,
+  AlignCenter,
+  AlignRight,
+  AlignJustify,
+  AddImage,
+  AddTable,
+  AddYoutubeVideo,
+  BlockQuote,
+  BulletList,
+  ClearFormatting,
+  Code,
+  CodeBlock,
+  FontColor,
+  HighlightColor,
+  HorizontalRule,
+  OrderedList
+} from 'writeup';
 
 interface Props {
 }
 const Newpost = (props: Props) => {
+  const editor = getEditorConfig();
   const navigate = useNavigate();
   const authorization = useSelector((state: any) => state.authorization);
 
@@ -18,12 +46,11 @@ const Newpost = (props: Props) => {
   });
 
   const handleChange = (event: any) => {
-    setState({...state, [event.currentTarget.name]: event.currentTarget.value});
+    setState({ ...state, [event.currentTarget.name]: event.currentTarget.value });
   }
 
   const save = () => {
-    console.log(state);
-    createPost(state, authorization).then((data) => console.log(data))
+    createPost({ ...state, description: editor?.getHTML() }, authorization).then((data) => console.log(data))
   }
 
   const cancel = () => {
@@ -35,7 +62,31 @@ const Newpost = (props: Props) => {
       <form>
         <Input value={state.title} name="title" label='Title' onInput={handleChange} />
         <Input value={state.featuredImage} name="featuredImage" label='Feature image' onInput={handleChange} />
-        <Textarea rows={5} value={state.description} name="description" label='Body' onInput={handleChange} />
+        <Editor editor={editor}>
+          <Bold editor={editor} />
+          <Italic editor={editor} />
+          <UnderlineComponent editor={editor} />
+          <Strikethrough editor={editor} />
+          <AlignLeft editor={editor} />
+          <AlignCenter editor={editor} />
+          <AlignRight editor={editor} />
+          <AlignJustify editor={editor} />
+          <HeadingDropdown editor={editor} />
+          <AlignmentDropdown editor={editor} />
+          <BulletList editor={editor} />
+          <OrderedList editor={editor} />
+          <BlockQuote editor={editor} />
+          <Code editor={editor} />
+          <CodeBlock editor={editor} />
+          <FontColor editor={editor} />
+          <HighlightColor editor={editor} />
+          <HorizontalRule editor={editor} />
+          <ClearFormatting editor={editor} />
+          <AddImage editor={editor} imageUploadMethod="POST" imageUploadParam='file'
+            imageUploadURL={`${process.env.REACT_APP_API_URL}/upload`} />
+          <AddTable editor={editor} />
+          <AddYoutubeVideo editor={editor} />
+        </Editor>
         <div className="newpost__action-bar">
           <Button onClick={save} theme={ThemeType.primary}>Create post</Button>
           <Button onClick={cancel}>Cancel</Button>
