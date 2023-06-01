@@ -28,15 +28,18 @@ const ViewPost = () => {
         {post && <div className='view-post'>
             <div>
                 <ArticleViewWidget article={post} categories={categories} users={users}>
-                    <ArticleViewMetadataChildWidget>
+                    <ArticleViewMetadataChildWidget hideImage>
                         <Button onClick={goToEditPage}>Edit post</Button>
                     </ArticleViewMetadataChildWidget>
                     <ArticleViewTitleChildWidget />
                     <ArticleViewBodyChildWidget />
                 </ArticleViewWidget>
             </div>
-            <div>
+            <div className="desktop-only">
                 <AuthorProfile user={users.find((item: any) => item.id === post.createdBy)} />
+            </div>
+            <div className="mobile-only">
+                <AuthorProfile user={users.find((item: any) => item.id === post.createdBy)} horizontal />
             </div>
         </div>}
     </>)

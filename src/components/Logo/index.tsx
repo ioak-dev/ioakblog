@@ -22,7 +22,7 @@ const Logo = (props: Props) => {
           <img src={ioakblogWhite} alt="Ioakblog logo" />
         )}
         {profile.theme !== 'basicui-light' && (
-          <img src={ioakblogWhite} alt="Ioakblog logo" />
+          <img src={ioakblogBlack} alt="Ioakblog logo" />
         )}
       </div>
     </div>

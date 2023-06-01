@@ -5,7 +5,7 @@ import DarkModeIcon from '../DarkModeIcon';
 import { ArticleListWidget, ArticleType } from 'reach';
 import { categories } from './data/CategoryData';
 import { users } from './data/UserData';
-import { getAllPosts } from './service';
+import { getAllPosts, getFeaturedPosts } from './service';
 import { useSelector } from 'react-redux';
 
 interface Props {
@@ -13,14 +13,19 @@ interface Props {
 const PageView = (props: Props) => {
 
   const [articles, setArticles] = useState<ArticleType.Article[]>([]);
+  const [featuredArticle, setFeaturedArticle] = useState<ArticleType.Article | null>(null);
   const authorization = useSelector((state: any) => state.authorization);
   const users = useSelector((state: any) => state.user.users);
 
   useEffect(() => {
     if (authorization.isAuth) {
       getAllPosts().then((data) => {
-        console.log("((", data);
         setArticles(data);
+      });
+
+      getFeaturedPosts().then((data) => {
+        console.log(data);
+        setFeaturedArticle(data);
       });
     }
   }, [authorization]);
@@ -31,7 +36,11 @@ const PageView = (props: Props) => {
 
   return (
     <div className="home-page-view">
-      <ArticleListWidget categories={categories} users={users} articles={articles} viewArticleBaseUrl={"/#/post/"}/>
+      <div className="home-page-view__featured">
+        {featuredArticle && <ArticleListWidget categories={categories} users={users} articles={[featuredArticle]} viewArticleBaseUrl={"/#/post/"} fullWidthImage backgroundFill />}
+        <div> List data</div>
+      </div>
+      <ArticleListWidget categories={categories} users={users} articles={articles} viewArticleBaseUrl={"/#/post/"} />
     </div>
   );
 };

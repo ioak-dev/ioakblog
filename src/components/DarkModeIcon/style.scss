@@ -1,20 +1,19 @@
 .dark-mode-icon {
   display: flex;
-  color: var(--theme-white-500);
+  color: var(--theme-white-100i);
   background-color: transparent;
   box-shadow: none;
   border: none;
   cursor: pointer;
   transition: color 250ms ease-in-out;
-  font-size: 30px;
+  font-size: 18px;
+}
 
-  &:hover, &:focus {
-    color: var(--theme-white-100);
-  }
-  // &.basicui-dark {
-  //   color: var(--color-1);
-  // }
-  // &.basicui-light {
-  //   color: var(--color-1);
-  // }
+.basicui-dark .dark-mode-icon {
+  color: var(--theme-black-100i);
+}
+
+.dark-mode-icon:hover,
+.dark-mode-icon:focus {
+  color: var(--theme-primary-500);
 }

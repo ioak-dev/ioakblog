@@ -3,10 +3,14 @@
     grid-template-columns: 1fr auto;
     align-items: center;
     height: 50px;
-    background-color: var(--theme-primary-600);
-    background-color: #323232;
-    color: var(--theme-primary-600i);
+    background-color: var(--theme-white-200);
+    color: var(--theme-white-200i);
     padding: 0 20px;
+}
+
+.basicui-dark .topbar {
+    background-color: var(--theme-black-300);
+    color: var(--theme-black-300i);
 }
 
 .topbar__left,
@@ -18,17 +22,44 @@
     align-items: center;
 }
 
-.topbar__link, .topbar__link:hover, .topbar__link:focus, .topbar__link:active {
+.topbar__link,
+.topbar__link:hover,
+.topbar__link:focus,
+.topbar__link:active {
     color: var(--color-white-100);
+}
+
+.basicui-dark .topbar__link,
+.basicui-dark .topbar__link:hover,
+.basicui-dark .topbar__link:focus,
+.basicui-dark .topbar__link:active {
+    color: var(--color-black-100);
 }
 
 .topbar__link {
     background-color: var(--theme-primary-transparent-100);
-    padding: 8px 16px;
+    padding: 6px 12px;
     margin-right: 10px;
+    border-radius: 4px;
     transition: background-color 250ms ease-in-out;
 }
 
 .topbar__link:hover {
     background-color: var(--theme-primary-transparent-600);
+}
+
+.topbar__right__login-out,
+.topbar__right__login-out:hover,
+.topbar__right__login-out:focus,
+.topbar__right__login-out:active {
+    background-color: transparent;
+    color: inherit;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
+}
+
+.topbar__right__login-out:hover {
+    color: var(--theme-primary-500);
 }
