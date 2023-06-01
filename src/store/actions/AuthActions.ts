@@ -6,7 +6,7 @@ export const getAuth = () => (dispatch: any) => {
   });
 };
 
-export const addAuth = (data) => (dispatch: any) => {
+export const addAuth = (data: any) => (dispatch: any) => {
   dispatch({
     type: ADD_AUTH,
     payload: data,
