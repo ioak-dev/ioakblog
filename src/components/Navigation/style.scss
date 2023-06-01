@@ -27,6 +27,7 @@
 .topbar__link:focus,
 .topbar__link:active {
     color: var(--color-white-100);
+    text-decoration: none;
 }
 
 .basicui-dark .topbar__link,
@@ -37,15 +38,23 @@
 }
 
 .topbar__link {
-    background-color: var(--theme-primary-transparent-100);
+    background-color: var(--theme-white-400);
     padding: 6px 12px;
     margin-right: 10px;
     border-radius: 4px;
+    font-size: 12px;
     transition: background-color 250ms ease-in-out;
 }
 
+.basicui-dark .topbar__link {
+    background-color: var(--theme-black-100);
+}
+
 .topbar__link:hover {
-    background-color: var(--theme-primary-transparent-600);
+    background-color: var(--theme-white-600);
+}
+.basicui-dark .topbar__link:hover {
+    background-color: var(--theme-black-50);
 }
 
 .topbar__right__login-out,

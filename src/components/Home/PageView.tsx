@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './PageView.scss';
 import Logo from '../Logo';
 import DarkModeIcon from '../DarkModeIcon';
-import { ArticleListWidget, ArticleType } from 'reach';
+import { ArticleListWidget, ArticleMinimalListWidget, ArticleType, SpotlightGridWidget } from 'reach';
 import { categories } from './data/CategoryData';
 import { users } from './data/UserData';
 import { getAllPosts, getFeaturedPosts } from './service';
@@ -24,21 +24,19 @@ const PageView = (props: Props) => {
       });
 
       getFeaturedPosts().then((data) => {
-        console.log(data);
         setFeaturedArticle(data);
       });
     }
   }, [authorization]);
 
-  useEffect(() => {
-    console.log(users)
-  }, [users]);
-
   return (
     <div className="home-page-view">
       <div className="home-page-view__featured">
         {featuredArticle && <ArticleListWidget categories={categories} users={users} articles={[featuredArticle]} viewArticleBaseUrl={"/#/post/"} fullWidthImage backgroundFill />}
-        <div> List data</div>
+        <div className="home-page-view__featured__list">
+          <h5 className="home-page-view__featured__list__title">Recent Posts</h5>
+          <ArticleMinimalListWidget categories={categories} users={users} articles={articles} viewArticleBaseUrl={"/#/post/"} hideImage />
+        </div>
       </div>
       <ArticleListWidget categories={categories} users={users} articles={articles} viewArticleBaseUrl={"/#/post/"} />
     </div>
