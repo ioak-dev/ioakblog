@@ -19,10 +19,10 @@ const Logo = (props: Props) => {
     <div className="logo">
       <div className="logo--image">
         {profile.theme === 'basicui-light' && (
-          <img src={ioakblogWhite} alt="Ioakblog logo" />
+          <img src={ioakblogBlack} alt="Ioakblog logo" />
         )}
         {profile.theme !== 'basicui-light' && (
-          <img src={ioakblogBlack} alt="Ioakblog logo" />
+          <img src={ioakblogWhite} alt="Ioakblog logo" />
         )}
       </div>
     </div>
